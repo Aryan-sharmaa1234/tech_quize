@@ -13,7 +13,6 @@
         --accent: #06b6d4;
         --correct: #16a34a;
         --wrong: #dc2626;
-        --explanation-bg: #1e293b; /* New color for explanation background */
       }
       * {
         box-sizing: border-box;
@@ -152,21 +151,6 @@
         color: var(--accent);
       }
 
-      /* --- New Explanation Style --- */
-      #explanation {
-        margin-top: 20px;
-        padding: 15px;
-        background-color: var(--explanation-bg);
-        border-left: 5px solid var(--accent);
-        border-radius: 4px;
-        font-size: 14px;
-        color: #d1d5db; /* Light gray text */
-        display: none; /* Hide by default */
-      }
-      #explanation strong {
-        color: var(--accent);
-      }
-
       @media (max-width: 520px) {
         .options {
           grid-template-columns: 1fr;
@@ -208,8 +192,7 @@
             <button class="btn primary" id="nextBtn" disabled>Next</button>
           </div>
         </div>
-
-        <div id="explanation"></div>
+        <!-- Removed explanation section here -->
       </section>
     </div>
 
@@ -225,7 +208,7 @@
       const feedback = document.getElementById("feedback");
       const nextBtn = document.getElementById("nextBtn");
       const showAnswerBtn = document.getElementById("showAnswerBtn");
-      const explanationEl = document.getElementById("explanation");
+      // Removed explanationEl declaration as the element is gone
 
       // Audio elements references
       const stopwatchSound = document.getElementById("stopwatch-sound");
@@ -234,7 +217,6 @@
       // Constants
       const COUNTDOWN_TIME = 5; // The initial count
       const REVEAL_PAUSE_TIME = 2; // Pause duration after answer is revealed
-      const NEXT_QUESTION_DELAY = 3; // Delay before moving to next question (unused in final logic, but kept for clarity)
 
       let current = 0;
       let timerId;
@@ -313,11 +295,6 @@
         // *** Action 1: Play true.mp3 immediately ***
         playSound("true");
 
-        // Determine the correct option text in both languages
-        const correctOptionHindi = item.options_hindi[correct];
-        const correctOptionEnglish = item.options_english[correct];
-        const combinedCorrectOption = `${correctOptionHindi} (${correctOptionEnglish})`;
-
         // Highlight correct answer
         const nodes = optionsEl.querySelectorAll(".opt");
         nodes.forEach((n) => {
@@ -326,21 +303,9 @@
           }
         });
 
-        // Combine and show explanation in both languages
-        const combinedExplanation = `
-            <strong>हिंदी:</strong> ${item.explanation_hindi}<br><br>
-            <strong>English:</strong> ${item.explanation_english}
-        `;
-
-        explanationEl.innerHTML = `
-            <strong>सही उत्तर (Correct Answer): ${combinedCorrectOption}</strong>
-            <hr style="border-color: #2e3b4d; margin: 8px 0;">
-            <strong>स्पष्टीकरण (Explanation):</strong>
-            ${combinedExplanation}
-        `;
-        explanationEl.style.display = "block";
+        // The answer is revealed by highlighting the option and updating the text.
         feedback.textContent =
-          "Time Up! Answer Revealed ✅ Moving to next question...";
+          "Time Up! Correct Answer Shown ✅ Moving to next question...";
 
         // *** Action 2: Start the REVEAL_PAUSE_TIME countdown for next question ***
         let timeRemaining = REVEAL_PAUSE_TIME;
@@ -353,12 +318,10 @@
             moveToNextQuestion();
           } else {
             // Update feedback for the transition pause
-            feedback.textContent = `Time Up! Answer Revealed ✅ Moving in ${timeRemaining}s...`;
+            feedback.textContent = `Correct Answer Shown ✅ Moving in ${timeRemaining}s...`;
           }
         }, 1000);
       }
-
-      // Removed startRevealPause function as its logic is now merged into showAnswer
 
       // Function to move to the next question
       function moveToNextQuestion() {
@@ -375,8 +338,6 @@
       function startQuestionTimer() {
         let timeRemaining = COUNTDOWN_TIME;
         clearInterval(timerId); // Clear any existing timer
-
-        // Removed: playSound('stopwatch'); - as requested by the user
 
         timerId = setInterval(() => {
           timeRemaining--;
@@ -404,10 +365,6 @@
         qtitle.textContent = `${item.q_hindi} (${item.q_english})`;
 
         optionsEl.innerHTML = "";
-
-        // Hide and clear explanation
-        explanationEl.style.display = "none";
-        explanationEl.innerHTML = "";
 
         // Reset feedback before timer starts
         feedback.textContent = `Time left to guess: ${COUNTDOWN_TIME}s ⏳`;
