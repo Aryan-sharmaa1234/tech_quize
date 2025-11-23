@@ -1,0 +1,49 @@
+[
+  {
+    "q_hindi": "भारत का प्रथम नागरिक किसे कहा जाता है?",
+    "q_english": "Who is called the First Citizen of India?",
+    "options_hindi": [
+      "प्रधानमंत्री",
+      "राष्ट्रपति",
+      "मुख्य न्यायाधीश",
+      "लोकसभा अध्यक्ष"
+    ],
+    "options_english": [
+      "Prime Minister",
+      "President",
+      "Chief Justice of India",
+      "Speaker of Lok Sabha"
+    ],
+    "correct": 1,
+    "explanation_hindi": "भारत का प्रथम नागरिक राष्ट्रपति को माना जाता है।",
+    "explanation_english": "The President of India is considered the First Citizen of India."
+  },
+  {
+    "q_hindi": "राष्ट्रपिता किसे कहा जाता है?",
+    "q_english": "Who is known as the Father of the Nation?",
+    "options_hindi": [
+      "जवाहरलाल नेहरू",
+      "डॉ. बी. आर. अम्बेडकर",
+      "महात्मा गांधी",
+      "सुभाष चंद्र बोस"
+    ],
+    "options_english": [
+      "Jawaharlal Nehru",
+      "B.R. Ambedkar",
+      "Mahatma Gandhi",
+      "Subhash Chandra Bose"
+    ],
+    "correct": 2,
+    "explanation_hindi": "महात्मा गांधी को राष्ट्रपिता कहा जाता है।",
+    "explanation_english": "Mahatma Gandhi is known as the Father of the Nation."
+  },
+  {
+    "q_hindi": "दुनिया का सबसे बड़ा महाद्वीप कौन सा है?",
+    "q_english": "Which is the largest continent in the world?",
+    "options_hindi": ["अफ्रीका", "एशिया", "यूरोप", "ऑस्ट्रेलिया"],
+    "options_english": ["Africa", "Asia", "Europe", "Australia"],
+    "correct": 1,
+    "explanation_hindi": "एशिया दुनिया का सबसे बड़ा महाद्वीप है।",
+    "explanation_english": "Asia is the largest continent in the world."
+  }
+]
